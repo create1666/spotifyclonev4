@@ -1,11 +1,18 @@
-import React from 'react'
-import './player.css'
-const Player = () => {
+import React from "react";
+import Body from "../BODYCOMP/Body";
+import Footer from "../FOOTER/Footer";
+import Sidebar from "../SIDEBAR/Sidebar";
+import "./player.css";
+const Player = ({ spotifyApi }) => {
   return (
     <div className="player">
-      <h1>play me</h1>
+      <div className="player_body">
+        <Sidebar />
+        <Body />
+      </div>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Player
+export default Player;
