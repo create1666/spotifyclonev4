@@ -1,4 +1,8 @@
 .bodysidebar{
-  background-color: linear-gradient(#1ae58a , rgba(255,255,255,0.1));
-  flex : 0.8  
+  background: linear-gradient( #0A1929, rgb(37, 37, 37, 1) );
+  flex : 0.8  ;
+  height : 100vh ;
+  color : white;
+  padding: 1rem;
+  margin-right: auto;
 }

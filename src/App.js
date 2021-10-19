@@ -20,10 +20,19 @@ const App = () => {
 
     if (_token) {
       dispatch({ type: "SET_TOKEN", token: _token });
-      spotifyApi.setAccessToken(_token);
+      spotifyApi.setAccessToken(_token); //set access
       spotifyApi.getMe().then((user) => {
         dispatch({ type: "SET_USER", user: user });
       });
+
+      const fetchPlaylists = async () => {
+        let response = await spotifyApi.getUserPlaylists();
+        if (response) {
+          let playlists = await response;
+          dispatch({ type: "SET_PLAYINGLIST", payload: playlists });
+        }
+      };
+      fetchPlaylists();
     }
 
     return () => {
