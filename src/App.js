@@ -10,7 +10,7 @@ import { useStateValue } from "./StateProvider";
 const spotifyApi = new SpotifyWebApi();
 
 const App = () => {
-  const [{ user, token }, dispatch] = useStateValue();
+  const [{ token }, dispatch] = useStateValue();
 
   useEffect(() => {
     const hash = getTokenUrl();
@@ -39,7 +39,7 @@ const App = () => {
       dispatch({});
     }; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(user);
+  // console.log(user);
   return (
     <div className="app">
       {token ? <Player spotifyApi={spotifyApi} /> : <Login />}

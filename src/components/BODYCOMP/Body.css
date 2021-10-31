@@ -6,3 +6,31 @@
   padding: 1rem;
   margin-right: auto;
 }
+
+.body__info {
+  display: flex;
+  align-items : flex-end;
+  padding:10px;
+  position: relative;
+}
+
+.body__info::after {
+  position: absolute;
+    left: 40;
+    bottom: 18;
+    border: 1px solid rgb(15, 15, 15);
+    content:"Chromatic - SCALE";
+}
+.body__info >img {
+  height: 20vw;
+}
+
+img::after {
+    content: " - Remember this";
+    z-index: 999;
+    color: white;
+}
+
+.body__text {
+  margin-left: 10px;
+}

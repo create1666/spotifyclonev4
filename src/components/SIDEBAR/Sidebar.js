@@ -1,5 +1,5 @@
 import React from "react";
-import { Resources } from "../../Resources";
+import { resources } from "../../Resources";
 import "./Sidebar.css";
 import SideBarOptions from "./SideBarOptions";
 import HomeIcon from "@mui/icons-material/Home";
@@ -8,7 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useStateValue } from "../../StateProvider";
 const Sidebar = () => {
   const [{ payload }] = useStateValue();
-  const { img } = Resources;
+  const { img } = resources;
 
   return (
     <div className="sidebar">

@@ -10,12 +10,13 @@
 .sidebar > img {
   height:70px;
   width:70px;
+  margin-left: 20px;
   object-fit: contain;
 }
 
 
 .sideabr_title {
-  margin-right: 8.6rem;
+  margin-left: 20px;
   font-size: 14px;
 }
 
