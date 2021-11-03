@@ -2,9 +2,14 @@ import React from "react";
 import Header from "../HEADER/Header";
 import "./Body.css";
 import { resources } from "../../Resources";
+// import { useStateValue } from "../../StateProvider";
+import PlaylistTable from "../PlaylistTable/playlist-table";
+import { useStateValue } from "../../StateProvider";
 
 const Body = () => {
   const { imgLink2 } = resources;
+  const [{ weeklyPlaylist }, dispatch] = useStateValue();
+  // console.log("LLL>>>>>", pops);
   return (
     <div className="bodysidebar">
       <Header />
@@ -16,6 +21,7 @@ const Body = () => {
           <p>description...</p>
         </div>
       </div>
+      <PlaylistTable weeklyPlaylist={weeklyPlaylist} dispatch={dispatch} />
     </div>
   );
 };

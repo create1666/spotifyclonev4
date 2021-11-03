@@ -3,6 +3,7 @@ import "./Footer.css";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 import {
   PlayCircleOutline,
+  PauseCircleOutline,
   PlaylistPlayOutlined,
   Repeat,
   SkipNext,
@@ -12,10 +13,21 @@ import {
 import { Grid, Slider } from "@mui/material";
 import { Box } from "@mui/system";
 import classNames from "classnames";
+import { useStateValue } from "../../StateProvider";
 const Footer = () => {
   const [colorChange, setColor] = useState("");
+  const [{ playing }, dispatch] = useStateValue();
+
+  const onPlayClick = () => {
+    dispatch({ type: "PLAY_TRACK" });
+  };
+
+  const onPauseClick = () => {
+    dispatch({ type: "PAUSE_TRACK" });
+  };
+
   return (
-    <div className="footer">
+    <footer className="footer">
       <div className="footer__left">
         <img
           src="https://www.currentschoolnews.com/wp-content/uploads/2021/06/Gear-RIP-Google-Music-1194411695.jpg"
@@ -35,7 +47,15 @@ const Footer = () => {
           onClick={() => setColor("green")}
         />
         <SkipPrevious className="footer__skipPrevious" />
-        <PlayCircleOutline className="footer__playCircleOutline" />
+        {playing ? (
+          <PauseCircleOutline onClick={onPauseClick} />
+        ) : (
+          <PlayCircleOutline
+            onClick={() => onPlayClick()}
+            className="footer__playCircleOutline"
+          />
+        )}
+
         <SkipNext className="footer__skipPrevious" />
         <Repeat
           className={`footer__repeat ${colorChange === "red" && "--red"}
@@ -54,7 +74,7 @@ const Footer = () => {
           </Box>
         </Grid>
       </div>
-    </div>
+    </footer>
   );
 };
 

@@ -7,32 +7,47 @@ import SpotifyWebApi from "spotify-web-api-js";
 import Player from "./components/PLAYER/Player";
 import { useStateValue } from "./StateProvider";
 
+// TODO =>  CREATE NEW INSTANCE OF OBJECT API TO ENABLE INHERITING ALL THE KEYS & VALUE PAIRS
 const spotifyApi = new SpotifyWebApi();
 
 const App = () => {
-  const [{ token }, dispatch] = useStateValue();
+  const [{ token, track, playing }, dispatch] = useStateValue();
 
   useEffect(() => {
+    // TODO => GET THE TOKEN URL USING THE FUNCTION CALL
     const hash = getTokenUrl();
+    // TODO => CLEAR THE URL FROM THE BROWSER TAB TO HIDE SECRET TOKEN
     window.location.hash = "";
-
+    // TODO => ACCESS THE TOKEN PROPERTY FROM THE STORED OBJECT
     const _token = hash?.access_token;
 
+    // TODO => CONDITIONALLY CHECK IF TOKEN EXIST
     if (_token) {
+      // TODO => SET ACCESS TOKEN FOR AUTHORIZATION PASS TO GRANT ACCESS TO API CALLS
+      spotifyApi.setAccessToken(_token);
+      // TODO => DISPATCH TOKEN TO BE LISTENED FOR AND SET IN THE STATE
       dispatch({ type: "SET_TOKEN", token: _token });
-      spotifyApi.setAccessToken(_token); //set access
+
       spotifyApi.getMe().then((user) => {
         dispatch({ type: "SET_USER", user: user });
       });
 
-      const fetchPlaylists = async () => {
+      const fetchUserPlaylists = async () => {
         let response = await spotifyApi.getUserPlaylists();
-        if (response) {
-          let playlists = await response;
-          dispatch({ type: "SET_PLAYINGLIST", payload: playlists });
-        }
+        dispatch({ type: "SET_PLAYINGLIST", payload: response });
       };
-      fetchPlaylists();
+
+      fetchUserPlaylists();
+
+      const fetchPlaylist = async () => {
+        const weeklyPlaylist = await spotifyApi.getPlaylist(
+          "37i9dQZEVXcQSGRglBdAqu"
+        );
+        console.log("dataplalist", weeklyPlaylist);
+        dispatch({ type: "SET_DISCOVER_WEEKLY", payload: weeklyPlaylist });
+      };
+
+      fetchPlaylist();
     }
 
     return () => {
@@ -42,7 +57,11 @@ const App = () => {
   // console.log(user);
   return (
     <div className="app">
-      {token ? <Player spotifyApi={spotifyApi} /> : <Login />}
+      {token ? (
+        <Player spotifyApi={spotifyApi} track={track} playing={playing} />
+      ) : (
+        <Login />
+      )}
     </div>
   );
 };

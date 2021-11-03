@@ -7,7 +7,7 @@ import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import SearchIcon from "@mui/icons-material/Search";
 import { useStateValue } from "../../StateProvider";
 const Sidebar = () => {
-  const [{ payload }] = useStateValue();
+  const [{ playlists }] = useStateValue();
   const { img } = resources;
 
   return (
@@ -21,7 +21,7 @@ const Sidebar = () => {
       <strong className="sideabr_title">PLAYLIST</strong>
       <hr />
 
-      {payload?.items.map((item, index) => {
+      {playlists.map((item, index) => {
         return <SideBarOptions key={index} title={item.name} />;
       })}
     </div>

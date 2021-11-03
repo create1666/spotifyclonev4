@@ -1,7 +1,7 @@
 .sidebar {
   flex: 0.2;
   background-color: #0A1929;
-  height:100vh;
+  /* height:100vh; */
   color: white;
   min-width: 230px;
   padding:5px;
