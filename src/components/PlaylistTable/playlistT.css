@@ -1,0 +1,24 @@
+.active {
+  padding: 20px;
+  background-color: 1px solid rgba(70, 70, 104, 0.333);
+  
+}
+
+tbody tr td img {
+  height: 50px;
+  object-fit: contain;
+  
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead{
+  border-bottom: 1px solid white;
+}
+
+.img-td{
+  display: flex;
+  align-items: center
+}

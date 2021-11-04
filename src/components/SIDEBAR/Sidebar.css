@@ -1,0 +1,27 @@
+.sidebar {
+  flex: 0.2;
+  background-color: #0A1929;
+  /* height:100vh; */
+  color: white;
+  min-width: 230px;
+  padding:5px;
+}
+
+.sidebar > img {
+  height:70px;
+  width:70px;
+  margin-left: 20px;
+  object-fit: contain;
+}
+
+
+.sideabr_title {
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.sidebar  hr {
+  margin: 10px auto;
+  width: 100%;
+  border: 1px solid rgba(70, 70, 104, 0.333);
+}
