@@ -16,12 +16,18 @@ import classNames from "classnames";
 import { useStateValue } from "../../StateProvider";
 const Footer = () => {
   const [colorChange, setColor] = useState("");
-  const [{ playing }, dispatch] = useStateValue();
+  const [{ playing, volume, repeat }, dispatch] = useStateValue();
 
   const onPlayClick = () => {
     dispatch({ type: "PLAY_TRACK" });
   };
-
+  const onTrackRepeat = () => {
+    if (!repeat) {
+      dispatch({ type: "SET_REPEAT" });
+    } else {
+      dispatch({ type: "DISABLE_REPEAT" });
+    }
+  };
   const onPauseClick = () => {
     dispatch({ type: "PAUSE_TRACK" });
   };
@@ -58,10 +64,11 @@ const Footer = () => {
 
         <SkipNext className="footer__skipPrevious" />
         <Repeat
-          className={`footer__repeat ${colorChange === "red" && "--red"}
+          onClick={() => onTrackRepeat()}
+          className={`footer__repeat ${!repeat ? "" : "--red"}
            
           `}
-          onClick={() => setColor("red")}
+          // onClick={() => setColor("red")}
         />
       </div>
       <div className="footer__right">
@@ -70,7 +77,19 @@ const Footer = () => {
         <VolumeDownOutlined />
         <Grid>
           <Box width={200}>
-            <Slider marks min={10} max={110} />
+            <Slider
+              onChange={(e, newValue) => {
+                dispatch({
+                  type: "VOLUME_CHANGE",
+                  payload: newValue,
+                });
+              }}
+              value={volume * 100}
+              marks
+              min={0}
+              max={100}
+              step={10}
+            />
           </Box>
         </Grid>
       </div>

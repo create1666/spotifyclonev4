@@ -51,7 +51,7 @@ const PlaylistTable = ({weeklyPlaylist, dispatch}) => {
           <tr className={ `active ${trHoverState && "--hover" }`} onClick={() => onTrackClick(playlist)} key={number} style={{textAlign: 'center'}}>
             <td>{ number + 1}</td>
             {/* <td>{ playlist.track.album.images.map((item) => <img  src={item.url} alt={""}/>)} {playlist.track.name} </td> */}
-            <td>{<img  src={playlist.track.album.images[0].url} alt={""}/>} {playlist.track.name} </td>
+            <td><div className="img-td">{<img  src={playlist.track.album.images[0].url} alt={""}/>} {playlist.track.name}</div> </td>
             <td>{playlist.track.album.name}</td>
             <td>{dayjs(playlist.added_at).fromNow()}</td>
             <td>{millisToMinutesAndSeconds(playlist.track.duration_ms)}</td>

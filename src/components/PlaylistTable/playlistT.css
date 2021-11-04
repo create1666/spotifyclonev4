@@ -17,3 +17,8 @@ table {
 thead{
   border-bottom: 1px solid white;
 }
+
+.img-td{
+  display: flex;
+  align-items: center
+}

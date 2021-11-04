@@ -1,9 +1,10 @@
 import React, { useRef, useEffect } from 'react'
 import MP3 from '../../song.mp3'
+import { useStateValue } from '../../StateProvider';
 
-const AudioPlayer = ({ track, playing }) => {
-  console.log(playing, 'playnig')
+const AudioPlayer = ({ track,  }) => {
   const audioRef = useRef();
+  const [{volume, playing,repeat},] = useStateValue()
 
   useEffect(() => {
     if (playing) {
@@ -11,7 +12,10 @@ const AudioPlayer = ({ track, playing }) => {
     } else {
       audioRef.current.pause()
     }
-  }, [playing])
+
+    audioRef.current.volume = volume;
+    audioRef.current.loop = repeat;
+  }, [playing, volume, repeat]);
 
   return (
     <div hidden>
